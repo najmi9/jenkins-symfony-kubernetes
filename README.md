@@ -20,9 +20,9 @@
 eksctl create cluster \
   --name cluster-jenkins-test \
   --region eu-west-3 \
-  --node-type t2.micro \
+  --node-type t2.small \
   --nodes-min 1 \
-  --nodes-max 1 \
+  --nodes-max 3 \
   --managed
 ```
 
