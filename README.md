@@ -76,9 +76,11 @@ git ls-remote -h git@bitbucket.org:person/projectmarket.git HEAD
 ```
 
 ## Permission issue related to docker inside Jenkins server:
-- sudo usermod -aG docker jenkins
-- groups jenkins
-- sudo systemctl restart jenkins
+```bash
+sudo usermod -aG docker jenkins
+groups jenkins
+sudo systemctl restart jenkins
+```
 
 ## Configure aws
 ```bash
