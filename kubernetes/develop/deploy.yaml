@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx
+  name: nginx-deployment
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: php
+          image: 209349368624.dkr.ecr.eu-west-3.amazonaws.com/jenkins-deployment/php:TAG
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9000
+              protocol: TCP
+          env:
+            - name: APP_ENV
+              value: "dev"
+            - name: APP_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: my-secrets
+                  key: APP_SECRET
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: my-secrets
+                  key: DATABASE_URL
+
+        - name: nginx
+          image: 209349368624.dkr.ecr.eu-west-3.amazonaws.com/jenkins-deployment/nginx:TAG
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /etc/nginx/conf.d/default.conf
+              mountPropagation: None
+              name: nginx
+              subPath: default.conf
+
+      volumes:
+        - configMap:
+            defaultMode: 420
+            name: nginx-config
+          name: nginx

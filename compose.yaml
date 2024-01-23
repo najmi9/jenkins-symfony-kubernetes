@@ -1,0 +1,30 @@
+version: '3.8'
+
+networks:
+  dev:
+
+services:
+  web:
+      image: nginx:alpine
+      restart: unless-stopped
+      container_name: web
+      ports:
+          - 8000:80
+      volumes:
+          - .:/application:delegated
+          - ./site.conf:/etc/nginx/conf.d/default.conf
+      depends_on:
+          - php
+      networks:
+          - dev
+
+  php:
+      restart: unless-stopped
+      container_name: php
+      build:
+          context: .
+          dockerfile: docker/php/Dockerfile
+      volumes:
+        - './:/application:delegated'
+      networks:
+          - dev
