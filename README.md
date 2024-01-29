@@ -1,4 +1,8 @@
 
+
+
+![cover](https://github.com/najmi9/jenkins-symfony-kubernetes/assets/61061620/3184e8cd-2b7d-4570-9008-b48ed1413812)
+
 # Workflow
 - Setup version control system: Bitbucket, Gitlab, AWS CodeCommit, Azure DevOps...
 - Setup container registry service: AWS ECR, DockerHub, Google Container Registry...
