@@ -119,8 +119,8 @@ eksctl delete cluster --region=eu-west-3 --name=cluster-jenkins-test
 kubectl exec -it nginx-deployment-df796f676-8kq8n --container php bash
 kubectl get pods -o wide
 kubectl get services -o wide
-```
 kubectl get deployments -o wide
 kubectl delete service nginx-service
 kubectl delete pod nginx-deployment-df796f676-8kq8n
 kubectl delete deployment nginx-deployment
+```
