@@ -18,6 +18,9 @@
 9. create eks
 10. push changes to bitbucket
 
+# Install kubectl
+sudo snap install kubectl --classic
+
 # Create EKS cluster
 - Create eks cluster:
 ```bash
